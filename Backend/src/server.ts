@@ -1,8 +1,8 @@
-import { createApp } from './app.ts'
-import { env } from './config/env.ts'
-import { connectDb } from './config/db.ts'
-import { logger } from './utils/logger.ts'
-import { initSignalingServer } from './realtime/signaling.ts'
+import { createApp } from './app.js'
+import { env } from './config/env.js'
+import { connectDb } from './config/db.js'
+import { logger } from './utils/logger.js'
+import { initSignalingServer } from './realtime/signaling.js'
 
 await connectDb()
 

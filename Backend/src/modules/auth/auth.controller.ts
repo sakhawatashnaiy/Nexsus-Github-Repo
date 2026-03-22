@@ -1,11 +1,11 @@
 import type { Request, Response } from 'express'
 import bcrypt from 'bcrypt'
 import { StatusCodes } from 'http-status-codes'
-import { ApiError } from '../../utils/ApiError.ts'
-import { catchAsync } from '../../utils/catchAsync.ts'
-import { sendResponse } from '../../utils/sendResponse.ts'
-import { UserModel } from '../users/user.model.ts'
-import { signAccessToken, signRefreshToken } from './jwt.ts'
+import { ApiError } from '../../utils/ApiError.js'
+import { catchAsync } from '../../utils/catchAsync.js'
+import { sendResponse } from '../../utils/sendResponse.js'
+import { UserModel } from '../users/user.model.js'
+import { signAccessToken, signRefreshToken } from './jwt.js'
 
 type AuthResponse = {
   user: { id: string; email: string; name: string; role: 'entrepreneur' | 'investor' | 'admin' }

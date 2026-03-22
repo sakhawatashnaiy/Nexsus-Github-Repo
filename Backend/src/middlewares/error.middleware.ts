@@ -1,8 +1,8 @@
 import type { NextFunction, Request, Response } from 'express'
 import { StatusCodes } from 'http-status-codes'
-import { ApiError } from '../utils/ApiError.ts'
-import { logger } from '../utils/logger.ts'
-import { env } from '../config/env.ts'
+import { ApiError } from '../utils/ApiError.js'
+import { logger } from '../utils/logger.js'
+import { env } from '../config/env.js'
 
 export function globalErrorHandler(err: unknown, _req: Request, res: Response, _next: NextFunction) {
   const isApiError = err instanceof ApiError

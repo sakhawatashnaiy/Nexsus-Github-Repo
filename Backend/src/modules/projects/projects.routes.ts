@@ -1,14 +1,14 @@
 import { Router } from 'express'
-import { requireAuth } from '../../middlewares/auth.middleware.ts'
-import { requireRole } from '../../middlewares/role.middleware.ts'
-import { validate } from '../../middlewares/validate.middleware.ts'
-import * as controller from './projects.controller.ts'
+import { requireAuth } from '../../middlewares/auth.middleware.js'
+import { requireRole } from '../../middlewares/role.middleware.js'
+import { validate } from '../../middlewares/validate.middleware.js'
+import * as controller from './projects.controller.js'
 import {
   createProjectSchema,
   listProjectsQuery,
   projectIdParams,
   updateProjectSchema,
-} from './projects.validation.ts'
+} from './projects.validation.js'
 
 export const projectRoutes = Router()
 

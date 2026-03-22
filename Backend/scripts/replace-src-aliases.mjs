@@ -1,7 +1,10 @@
 import fs from 'node:fs/promises'
 import path from 'node:path'
 
-const srcRoot = path.resolve(process.cwd(), 'src')
+const targetDir = process.argv[2] || 'dist'
+const root = path.resolve(process.cwd(), targetDir)
+
+const isSrc = path.basename(root).toLowerCase() === 'src'
 
 async function walk(dir) {
   const entries = await fs.readdir(dir, { withFileTypes: true })
@@ -27,12 +30,16 @@ function rewriteSpec(spec, fromDir) {
   const cleaned = spec.replaceAll('\\', '/')
   if (cleaned.startsWith('@/')) {
     const specPath = cleaned.slice(2)
-    const targetAbs = path.join(srcRoot, specPath)
-    return toPosix(ensureDotSlash(path.relative(fromDir, targetAbs)))
+    const targetAbs = path.join(root, specPath)
+    const rel = toPosix(ensureDotSlash(path.relative(fromDir, targetAbs)))
+    return rel.replace(/\.(ts|tsx)$/i, '.js')
   }
 
   if (cleaned.startsWith('./') || cleaned.startsWith('../')) {
-    return cleaned.replace(/\.js$/, '.ts')
+    // NodeNext best practice: author source imports as '*.js' so emitted JS runs in Node ESM.
+    // When targeting src/, rewrite '*.ts'/'*.tsx' specifiers to '*.js'.
+    // When targeting dist/, keep specifiers as-is unless they still end with '*.ts' (safety net).
+    return cleaned.replace(/\.(ts|tsx)$/i, '.js')
   }
 
   return cleaned
@@ -57,7 +64,10 @@ function rewriteCode(code, fromDir) {
   return { updated, changed }
 }
 
-const files = (await walk(srcRoot)).filter((f) => f.endsWith('.ts'))
+const files = (await walk(root)).filter((f) => {
+  if (isSrc) return f.endsWith('.ts') || f.endsWith('.tsx')
+  return f.endsWith('.js') || f.endsWith('.mjs')
+})
 let touchedFiles = 0
 let totalRewrites = 0
 
@@ -75,4 +85,4 @@ for (const filePath of files) {
   }
 }
 
-console.log(`Rewrote ${totalRewrites} alias imports across ${touchedFiles} file(s).`)
+console.log(`Rewrote ${totalRewrites} import specifier(s) across ${touchedFiles} file(s) in '${targetDir}'.`)

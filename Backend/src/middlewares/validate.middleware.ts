@@ -1,7 +1,7 @@
 import type { NextFunction, Request, Response } from 'express'
 import { StatusCodes } from 'http-status-codes'
 import { ZodError, type ZodSchema } from 'zod'
-import { ApiError } from '../utils/ApiError.ts'
+import { ApiError } from '../utils/ApiError.js'
 
 type Schemas = {
   body?: ZodSchema

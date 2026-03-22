@@ -1,10 +1,10 @@
 import type { Request, Response } from 'express'
 import mongoose from 'mongoose'
 import { StatusCodes } from 'http-status-codes'
-import { catchAsync } from '../../utils/catchAsync.ts'
-import { sendResponse } from '../../utils/sendResponse.ts'
-import { ApiError } from '../../utils/ApiError.ts'
-import { MeetingModel } from './meeting.model.ts'
+import { catchAsync } from '../../utils/catchAsync.js'
+import { sendResponse } from '../../utils/sendResponse.js'
+import { ApiError } from '../../utils/ApiError.js'
+import { MeetingModel } from './meeting.model.js'
 
 function toMeetingDto(m: {
   _id: mongoose.Types.ObjectId

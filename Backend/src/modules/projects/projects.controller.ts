@@ -1,10 +1,10 @@
 import type { Request, Response } from 'express'
 import mongoose from 'mongoose'
 import { StatusCodes } from 'http-status-codes'
-import { catchAsync } from '../../utils/catchAsync.ts'
-import { sendResponse } from '../../utils/sendResponse.ts'
-import { ProjectModel } from './project.model.ts'
-import { getSkipLimit } from '../../utils/pagination.ts'
+import { catchAsync } from '../../utils/catchAsync.js'
+import { sendResponse } from '../../utils/sendResponse.js'
+import { ProjectModel } from './project.model.js'
+import { getSkipLimit } from '../../utils/pagination.js'
 
 export const listProjects = catchAsync(async (req: Request, res: Response) => {
   const userId = req.user!.id

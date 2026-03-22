@@ -1,7 +1,7 @@
 import multer from 'multer'
 import path from 'node:path'
-import { env } from '../config/env.ts'
-import { ApiError } from '../utils/ApiError.ts'
+import { env } from '../config/env.js'
+import { ApiError } from '../utils/ApiError.js'
 
 function makeStorage(subDir: string) {
   const root = path.resolve(env.UPLOAD_DIR, subDir)

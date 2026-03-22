@@ -1,6 +1,6 @@
-import jwt from 'jsonwebtoken'
-import { env } from '../../config/env.ts'
-import { ApiError } from '../../utils/ApiError.ts'
+import jwt, { type SignOptions } from 'jsonwebtoken'
+import { env } from '../../config/env.js'
+import { ApiError } from '../../utils/ApiError.js'
 
 export type AccessTokenPayload = {
   sub: string
@@ -8,11 +8,15 @@ export type AccessTokenPayload = {
 }
 
 export function signAccessToken(payload: AccessTokenPayload) {
-  return jwt.sign(payload, env.JWT_ACCESS_SECRET, { expiresIn: env.JWT_ACCESS_EXPIRES_IN })
+  return jwt.sign(payload, env.JWT_ACCESS_SECRET, {
+    expiresIn: env.JWT_ACCESS_EXPIRES_IN as SignOptions['expiresIn'],
+  })
 }
 
 export function signRefreshToken(payload: AccessTokenPayload) {
-  return jwt.sign(payload, env.JWT_REFRESH_SECRET, { expiresIn: env.JWT_REFRESH_EXPIRES_IN })
+  return jwt.sign(payload, env.JWT_REFRESH_SECRET, {
+    expiresIn: env.JWT_REFRESH_EXPIRES_IN as SignOptions['expiresIn'],
+  })
 }
 
 export function verifyAccessToken(token: string): AccessTokenPayload {

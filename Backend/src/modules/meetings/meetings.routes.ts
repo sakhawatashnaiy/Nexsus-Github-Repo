@@ -1,12 +1,12 @@
 import { Router } from 'express'
-import { requireAuth } from '../../middlewares/auth.middleware.ts'
-import { validate } from '../../middlewares/validate.middleware.ts'
-import * as controller from './meetings.controller.ts'
+import { requireAuth } from '../../middlewares/auth.middleware.js'
+import { validate } from '../../middlewares/validate.middleware.js'
+import * as controller from './meetings.controller.js'
 import {
   createMeetingSchema,
   listMeetingsQuery,
   meetingIdParams,
-} from './meetings.validation.ts'
+} from './meetings.validation.js'
 
 export const meetingRoutes = Router()
 

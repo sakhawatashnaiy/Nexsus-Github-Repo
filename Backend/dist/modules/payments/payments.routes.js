@@ -1,0 +1,11 @@
+import { Router } from 'express';
+import { requireAuth } from '../../middlewares/auth.middleware.js';
+import { requireRole } from '../../middlewares/role.middleware.js';
+import { validate } from '../../middlewares/validate.middleware.js';
+import * as controller from './payments.controller.js';
+import { depositSchema, listTransactionsQuery, transferSchema, withdrawSchema, } from './payments.validation.js';
+export const paymentRoutes = Router();
+paymentRoutes.get('/transactions', requireAuth, requireRole('entrepreneur', 'investor', 'admin'), validate({ query: listTransactionsQuery }), controller.listTransactions);
+paymentRoutes.post('/deposit', requireAuth, requireRole('entrepreneur', 'investor', 'admin'), validate({ body: depositSchema }), controller.deposit);
+paymentRoutes.post('/withdraw', requireAuth, requireRole('entrepreneur', 'investor', 'admin'), validate({ body: withdrawSchema }), controller.withdraw);
+paymentRoutes.post('/transfer', requireAuth, requireRole('entrepreneur', 'investor', 'admin'), validate({ body: transferSchema }), controller.transfer);

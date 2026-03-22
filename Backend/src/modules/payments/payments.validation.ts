@@ -1,5 +1,5 @@
 import { z } from 'zod'
-import { paginationQuerySchema } from '../../utils/pagination.ts'
+import { paginationQuerySchema } from '../../utils/pagination.js'
 
 export const listTransactionsQuery = paginationQuerySchema.extend({
   status: z.enum(['pending', 'completed', 'failed']).optional(),

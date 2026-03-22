@@ -8,10 +8,10 @@ import compression from 'compression'
 import cookieParser from 'cookie-parser'
 import morgan from 'morgan'
 import path from 'node:path'
-import { env } from './config/env.ts'
-import { globalErrorHandler } from './middlewares/error.middleware.ts'
-import { routes } from './routes/index.ts'
-import { logger } from './utils/logger.ts'
+import { env } from './config/env.js'
+import { globalErrorHandler } from './middlewares/error.middleware.js'
+import { routes } from './routes/index.js'
+import { logger } from './utils/logger.js'
 
 export function createApp() {
 	const app = express()

@@ -1,12 +1,12 @@
 import type { Request, Response } from 'express'
 import mongoose from 'mongoose'
 import { StatusCodes } from 'http-status-codes'
-import { catchAsync } from '../../utils/catchAsync.ts'
-import { sendResponse } from '../../utils/sendResponse.ts'
-import { getSkipLimit } from '../../utils/pagination.ts'
-import { env } from '../../config/env.ts'
-import { TransactionModel, type PaymentProvider, type TransactionDoc } from './transaction.model.ts'
-import { UserModel } from '../users/user.model.ts'
+import { catchAsync } from '../../utils/catchAsync.js'
+import { sendResponse } from '../../utils/sendResponse.js'
+import { getSkipLimit } from '../../utils/pagination.js'
+import { env } from '../../config/env.js'
+import { TransactionModel, type PaymentProvider, type TransactionDoc } from './transaction.model.js'
+import { UserModel } from '../users/user.model.js'
 
 function normalizeCurrency(value: unknown) {
   const c = typeof value === 'string' ? value.trim().toUpperCase() : 'USD'

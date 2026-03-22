@@ -24,4 +24,5 @@ const userSchema = new mongoose.Schema<UserDocument>(
   { timestamps: true },
 )
 
-export const UserModel = mongoose.models.User || mongoose.model<UserDocument>('User', userSchema)
+const existing = mongoose.models.User as mongoose.Model<UserDocument> | undefined
+export const UserModel = existing ?? mongoose.model<UserDocument>('User', userSchema)

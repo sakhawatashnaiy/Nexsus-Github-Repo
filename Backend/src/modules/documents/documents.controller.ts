@@ -2,12 +2,12 @@ import type { Request, Response } from 'express'
 import mongoose from 'mongoose'
 import path from 'node:path'
 import { StatusCodes } from 'http-status-codes'
-import { catchAsync } from '../../utils/catchAsync.ts'
-import { sendResponse } from '../../utils/sendResponse.ts'
-import { env } from '../../config/env.ts'
-import { DocumentModel } from './document.model.ts'
-import type { DocumentDoc } from './document.model.ts'
-import { getSkipLimit } from '../../utils/pagination.ts'
+import { catchAsync } from '../../utils/catchAsync.js'
+import { sendResponse } from '../../utils/sendResponse.js'
+import { env } from '../../config/env.js'
+import { DocumentModel } from './document.model.js'
+import type { DocumentDoc } from './document.model.js'
+import { getSkipLimit } from '../../utils/pagination.js'
 
 function toDto(doc: DocumentDoc) {
   const id = String(doc._id)

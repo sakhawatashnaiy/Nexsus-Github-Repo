@@ -1,10 +1,10 @@
 import { Router } from 'express'
-import { authRoutes } from '../modules/auth/auth.routes.ts'
-import { dashboardRoutes } from '../modules/dashboard/dashboard.routes.ts'
-import { meetingRoutes } from '../modules/meetings/meetings.routes.ts'
-import { documentRoutes } from '../modules/documents/documents.routes.ts'
-import { paymentRoutes } from '../modules/payments/payments.routes.ts'
-import { projectRoutes } from '../modules/projects/projects.routes.ts'
+import { authRoutes } from '../modules/auth/auth.routes.js'
+import { dashboardRoutes } from '../modules/dashboard/dashboard.routes.js'
+import { meetingRoutes } from '../modules/meetings/meetings.routes.js'
+import { documentRoutes } from '../modules/documents/documents.routes.js'
+import { paymentRoutes } from '../modules/payments/payments.routes.js'
+import { projectRoutes } from '../modules/projects/projects.routes.js'
 
 export const routes = Router()
 

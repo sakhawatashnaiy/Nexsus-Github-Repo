@@ -1,7 +1,7 @@
 import type { Request, Response } from 'express'
-import { catchAsync } from '../../utils/catchAsync.ts'
-import { sendResponse } from '../../utils/sendResponse.ts'
-import { ProjectModel } from '../projects/project.model.ts'
+import { catchAsync } from '../../utils/catchAsync.js'
+import { sendResponse } from '../../utils/sendResponse.js'
+import { ProjectModel } from '../projects/project.model.js'
 
 export const dashboardStats = catchAsync(async (req: Request, res: Response) => {
   const userId = req.user!.id

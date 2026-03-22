@@ -1,6 +1,6 @@
 import mongoose from 'mongoose'
-import { env } from './env.ts'
-import { logger } from '../utils/logger.ts'
+import { env } from './env.js'
+import { logger } from '../utils/logger.js'
 
 export async function connectDb() {
   mongoose.set('strictQuery', true)

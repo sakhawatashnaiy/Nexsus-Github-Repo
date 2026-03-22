@@ -1,6 +1,6 @@
 import type { NextFunction, Request, Response } from 'express'
 import { StatusCodes } from 'http-status-codes'
-import { ApiError } from '../utils/ApiError.ts'
+import { ApiError } from '../utils/ApiError.js'
 
 export function requireRole(...roles: Array<'entrepreneur' | 'investor' | 'admin'>) {
   return (req: Request, _res: Response, next: NextFunction) => {

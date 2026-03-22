@@ -1,5 +1,5 @@
 import { z } from 'zod'
-import { paginationQuerySchema } from '../../utils/pagination.ts'
+import { paginationQuerySchema } from '../../utils/pagination.js'
 
 export const createProjectSchema = z.object({
   name: z.string().min(2),

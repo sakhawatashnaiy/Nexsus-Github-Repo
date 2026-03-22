@@ -1,7 +1,7 @@
 import type { Server as HttpServer } from 'http'
 import { Server } from 'socket.io'
-import { env } from '../config/env.ts'
-import { logger } from '../utils/logger.ts'
+import { env } from '../config/env.js'
+import { logger } from '../utils/logger.js'
 
 type JoinRoomPayload = {
   roomId: string

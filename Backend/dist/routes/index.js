@@ -1,0 +1,14 @@
+import { Router } from 'express';
+import { authRoutes } from '../modules/auth/auth.routes.js';
+import { dashboardRoutes } from '../modules/dashboard/dashboard.routes.js';
+import { meetingRoutes } from '../modules/meetings/meetings.routes.js';
+import { documentRoutes } from '../modules/documents/documents.routes.js';
+import { paymentRoutes } from '../modules/payments/payments.routes.js';
+import { projectRoutes } from '../modules/projects/projects.routes.js';
+export const routes = Router();
+routes.use('/auth', authRoutes);
+routes.use('/dashboard', dashboardRoutes);
+routes.use('/meetings', meetingRoutes);
+routes.use('/documents', documentRoutes);
+routes.use('/payments', paymentRoutes);
+routes.use('/projects', projectRoutes);

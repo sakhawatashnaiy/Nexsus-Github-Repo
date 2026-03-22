@@ -1,14 +1,14 @@
 import { Router } from 'express'
-import { requireAuth } from '../../middlewares/auth.middleware.ts'
-import { requireRole } from '../../middlewares/role.middleware.ts'
-import { validate } from '../../middlewares/validate.middleware.ts'
-import * as controller from './payments.controller.ts'
+import { requireAuth } from '../../middlewares/auth.middleware.js'
+import { requireRole } from '../../middlewares/role.middleware.js'
+import { validate } from '../../middlewares/validate.middleware.js'
+import * as controller from './payments.controller.js'
 import {
   depositSchema,
   listTransactionsQuery,
   transferSchema,
   withdrawSchema,
-} from './payments.validation.ts'
+} from './payments.validation.js'
 
 export const paymentRoutes = Router()
 

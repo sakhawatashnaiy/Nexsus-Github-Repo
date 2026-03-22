@@ -1,15 +1,15 @@
 import { Router } from 'express'
-import { requireAuth } from '../../middlewares/auth.middleware.ts'
-import { requireRole } from '../../middlewares/role.middleware.ts'
-import { uploadImage, uploadPitchDeck } from '../../middlewares/upload.middleware.ts'
-import { validate } from '../../middlewares/validate.middleware.ts'
-import * as controller from './documents.controller.ts'
+import { requireAuth } from '../../middlewares/auth.middleware.js'
+import { requireRole } from '../../middlewares/role.middleware.js'
+import { uploadImage, uploadPitchDeck } from '../../middlewares/upload.middleware.js'
+import { validate } from '../../middlewares/validate.middleware.js'
+import * as controller from './documents.controller.js'
 import {
   createDocumentSchema,
   documentIdParams,
   listDocumentsQuery,
   updateDocumentSchema,
-} from './documents.validation.ts'
+} from './documents.validation.js'
 
 export const documentRoutes = Router()
 

@@ -1,8 +1,8 @@
 import type { NextFunction, Request, Response } from 'express'
 import { StatusCodes } from 'http-status-codes'
-import { ApiError } from '../utils/ApiError.ts'
-import { verifyAccessToken } from '../modules/auth/jwt.ts'
-import { UserModel } from '../modules/users/user.model.ts'
+import { ApiError } from '../utils/ApiError.js'
+import { verifyAccessToken } from '../modules/auth/jwt.js'
+import { UserModel } from '../modules/users/user.model.js'
 
 export async function requireAuth(req: Request, _res: Response, next: NextFunction) {
   try {
