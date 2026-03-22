@@ -14,13 +14,45 @@ import { routes } from './routes/index.js';
 import { logger } from './utils/logger.js';
 export function createApp() {
     const app = express();
+    // Needed when running behind proxies (Render, Vercel, etc.)
+    if (env.NODE_ENV === 'production') {
+        app.set('trust proxy', 1);
+    }
     // Avoid 304 responses for JSON APIs (304 has no body and breaks clients expecting JSON)
     app.set('etag', false);
     app.disable('x-powered-by');
-    app.use(cors({
-        origin: env.CORS_ORIGIN.split(',').map((s) => s.trim()),
+    const allowedOrigins = env.CORS_ORIGIN.split(',')
+        .map((s) => s.trim())
+        .filter(Boolean);
+    const isOriginAllowed = (origin) => {
+        // Exact match
+        if (allowedOrigins.includes(origin))
+            return true;
+        // Wildcard: https://*.vercel.app
+        for (const pattern of allowedOrigins) {
+            if (!pattern.includes('*'))
+                continue;
+            const escaped = pattern.replace(/[.+?^${}()|[\]\\]/g, '\\$&').replace(/\*/g, '.*');
+            const re = new RegExp(`^${escaped}$`);
+            if (re.test(origin))
+                return true;
+        }
+        return false;
+    };
+    const corsOptions = {
+        origin: (origin, callback) => {
+            // Allow non-browser tools (curl/postman) with no Origin header
+            if (!origin)
+                return callback(null, true);
+            return callback(null, isOriginAllowed(origin));
+        },
         credentials: true,
-    }));
+        methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+        allowedHeaders: ['Content-Type', 'Authorization'],
+        optionsSuccessStatus: 204,
+    };
+    app.use(cors(corsOptions));
+    app.options('*', cors(corsOptions));
     app.use(helmet());
     app.use(mongoSanitize());
     app.use(hpp());
