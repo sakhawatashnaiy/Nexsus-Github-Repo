@@ -48,7 +48,8 @@ export function createApp() {
         },
         credentials: true,
         methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
-        allowedHeaders: ['Content-Type', 'Authorization'],
+        // Let `cors` reflect requested headers for preflight.
+        // This avoids accidental production failures when clients send extra headers.
         optionsSuccessStatus: 204,
     };
     app.use(cors(corsOptions));

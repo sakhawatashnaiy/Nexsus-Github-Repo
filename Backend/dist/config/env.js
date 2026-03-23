@@ -14,7 +14,11 @@ const schema = z.object({
     JWT_REFRESH_SECRET: z.string().trim().min(16),
     JWT_ACCESS_EXPIRES_IN: z.string().default('15m'),
     JWT_REFRESH_EXPIRES_IN: z.string().default('30d'),
-    CORS_ORIGIN: z.string().default('http://localhost:5173'),
+    // Comma-separated allowlist. Supports wildcard patterns like "https://*.vercel.app".
+    // NOTE: On Render, if you forget to set CORS_ORIGIN, this default keeps typical Vercel deployments working.
+    CORS_ORIGIN: z
+        .string()
+        .default('http://localhost:5173,http://localhost:5174,https://*.vercel.app'),
     COOKIE_SECURE: z.coerce.boolean().default(false),
     UPLOAD_PROVIDER: z.enum(['local', 'cloudinary']).default('local'),
     UPLOAD_DIR: z.string().default('uploads'),
