@@ -1,0 +1,38 @@
+# Normalize line endings to avoid common CRLF/LF warnings on Windows
+# Keep LF by default, but allow CRLF where it makes sense.
+* text=auto eol=lf
+
+# Windows scripts
+*.cmd text eol=crlf
+*.bat text eol=crlf
+*.ps1 text eol=crlf
+
+# Shell scripts
+*.sh text eol=lf
+
+# Data / config
+*.json text eol=lf
+*.yml  text eol=lf
+*.yaml text eol=lf
+*.env  text eol=lf
+*.md   text eol=lf
+
+# Source
+*.ts   text eol=lf
+*.tsx  text eol=lf
+*.js   text eol=lf
+*.mjs  text eol=lf
+*.cjs  text eol=lf
+*.css  text eol=lf
+*.html text eol=lf
+
+# Binary assets
+*.png  binary
+*.jpg  binary
+*.jpeg binary
+*.gif  binary
+*.webp binary
+*.ico  binary
+*.pdf  binary
+*.woff  binary
+*.woff2 binary

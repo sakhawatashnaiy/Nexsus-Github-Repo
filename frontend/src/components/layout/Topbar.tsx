@@ -26,22 +26,24 @@ export function Topbar({ onMenuClick }: { onMenuClick: () => void }) {
 
   return (
     <header className="sticky top-0 z-30 border-b border-[rgb(var(--border))] bg-[rgb(var(--bg))]/80 backdrop-blur">
-      <div className="flex h-14 items-center justify-between gap-3 px-3 sm:px-6">
+      <div className="flex h-16 items-center justify-between gap-3 px-3 sm:h-14 sm:px-6">
         <div className="flex items-center gap-2">
-          <Button variant="ghost" size="sm" className="sm:hidden" onClick={onMenuClick}>
-            <Menu className="h-4 w-4" />
+          <Button variant="ghost" size="md" className="sm:hidden" onClick={onMenuClick}>
+            <Menu className="h-5 w-5" />
           </Button>
-          <div className="text-sm font-semibold tracking-tight">Nexsus</div>
+          <div className="text-base font-extrabold italic tracking-[0.18em] sm:text-sm">
+            <span className="font-serif">Nexsus</span>
+          </div>
         </div>
 
         <div className="flex items-center gap-2">
           <Dropdown
             trigger={
               <div
-                className="relative inline-flex h-8 w-8 items-center justify-center rounded-md text-sm font-medium text-[rgb(var(--fg))] transition-all duration-150 ease-out hover:-translate-y-px hover:bg-black/5 active:translate-y-0 dark:hover:bg-white/5"
+                className="relative inline-flex h-9 w-9 items-center justify-center rounded-md text-sm font-medium text-[rgb(var(--fg))] transition-all duration-150 ease-out hover:-translate-y-px hover:bg-black/5 active:translate-y-0 dark:hover:bg-white/5 sm:h-8 sm:w-8"
                 aria-label="Notifications"
               >
-                <Bell className="h-4 w-4" />
+                <Bell className="h-5 w-5 sm:h-4 sm:w-4" />
                 {pendingCount > 0 ? (
                   <span className="absolute -right-1 -top-1 inline-flex min-w-4 items-center justify-center rounded-full bg-[rgb(var(--danger))] px-1 text-[10px] font-extrabold leading-4 text-[rgb(var(--danger-fg))] motion-safe:animate-pop">
                     {pendingCount > 99 ? '99+' : pendingCount}
@@ -67,14 +69,14 @@ export function Topbar({ onMenuClick }: { onMenuClick: () => void }) {
             )}
           </Dropdown>
 
-          <Button variant="ghost" size="sm" aria-label="Toggle theme" onClick={toggleTheme}>
-            {theme === 'dark' ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+          <Button variant="ghost" size="md" aria-label="Toggle theme" onClick={toggleTheme}>
+            {theme === 'dark' ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
           </Button>
 
           <Dropdown
             trigger={
-              <div className="flex items-center gap-2 rounded-md border border-[rgb(var(--border))] bg-[rgb(var(--card))] px-2 py-1.5 text-sm shadow-sm transition-shadow duration-150 ease-out hover:shadow sm:px-3 sm:py-2">
-                <div className="flex h-7 w-7 items-center justify-center rounded-full bg-[rgb(var(--primary))] text-xs font-semibold text-[rgb(var(--primary-fg))]">
+              <div className="flex items-center gap-2 rounded-md border border-[rgb(var(--border))] bg-[rgb(var(--card))] px-2 py-2 text-base shadow-sm transition-shadow duration-150 ease-out hover:shadow sm:px-3 sm:py-2 sm:text-sm">
+                <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[rgb(var(--primary))] text-sm font-semibold text-[rgb(var(--primary-fg))] sm:h-7 sm:w-7 sm:text-xs">
                   {initial}
                 </div>
                 <div className="hidden max-w-[10rem] truncate sm:block">

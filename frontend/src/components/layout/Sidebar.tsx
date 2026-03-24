@@ -6,7 +6,7 @@ import { Badge } from '@/components/ui/Badge'
 import { cn } from '@/utils/cn'
 
 const linkBase =
-  'flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium text-[rgb(var(--muted))] transition-colors duration-150 ease-out hover:bg-black/5 hover:text-[rgb(var(--fg))] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgb(var(--primary))] focus-visible:ring-offset-2 focus-visible:ring-offset-[rgb(var(--card))] dark:hover:bg-white/5'
+  'flex items-center gap-2 rounded-md px-3 py-2 text-base font-medium text-[rgb(var(--muted))] transition-colors duration-150 ease-out hover:bg-black/5 hover:text-[rgb(var(--fg))] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgb(var(--primary))] focus-visible:ring-offset-2 focus-visible:ring-offset-[rgb(var(--card))] dark:hover:bg-white/5 sm:text-sm'
 
 export function Sidebar({
   open,
@@ -44,8 +44,10 @@ function SidebarContent({ onNavigate }: { onNavigate?: () => void }) {
   return (
     <div className="flex h-full flex-col">
       <div className="border-b border-[rgb(var(--border))] px-4 py-4">
-        <div className="text-xs font-semibold tracking-wider text-[rgb(var(--muted))]">NEXSUS</div>
-        <div className="mt-1 flex items-center justify-between gap-2 text-sm font-semibold tracking-tight">
+        <div className="text-sm font-extrabold italic tracking-wider text-[rgb(var(--muted))] sm:text-xs">
+          NEXSUS
+        </div>
+        <div className="mt-1 flex items-center justify-between gap-2 text-base font-bold italic tracking-tight sm:text-sm">
           <div>Workspace</div>
           {user?.role ? (
             <Badge variant="muted" className="capitalize">

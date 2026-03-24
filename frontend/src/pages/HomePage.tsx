@@ -15,23 +15,27 @@ export function HomePage() {
 
         <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6">
           <header className="flex items-center justify-between gap-3">
-            <div className="shrink-0 cursor-default select-none font-sans text-[30px] font-bold italic leading-none tracking-[0.18em] text-[rgb(var(--fg))] drop-shadow-sm motion-safe:animate-fade-in transition-transform duration-300 ease-out will-change-transform hover:-translate-y-0.5 hover:scale-[1.03] hover:animate-pop active:scale-[0.99]">
+            <div className="shrink-0 cursor-default select-none font-sans text-[24px] font-bold italic leading-none tracking-[0.18em] text-[rgb(var(--fg))] drop-shadow-sm motion-safe:animate-fade-in transition-transform duration-300 ease-out will-change-transform hover:-translate-y-0.5 hover:scale-[1.03] hover:animate-pop active:scale-[0.99] sm:text-[30px]">
               NEXSUS
             </div>
 
-            <div className="flex flex-col items-stretch gap-2 sm:flex-row sm:items-center motion-safe:animate-fade-up">
-              <Link className="w-full sm:w-auto" to="/login">
+            <div className="flex items-center gap-2 motion-safe:animate-fade-up">
+              <Link className="shrink-0" to="/login">
                 <Button
-                  className="w-full transition-transform duration-200 ease-out hover:animate-pop"
+                  className="whitespace-nowrap transition-transform duration-200 ease-out hover:animate-pop"
                   variant="secondary"
                   size="sm"
                 >
                   Login
                 </Button>
               </Link>
-              <Link className="w-full sm:w-auto" to="/register">
-                <Button className="w-full transition-transform duration-200 ease-out hover:animate-pop" size="sm">
-                  Create account
+              <Link className="shrink-0" to="/register">
+                <Button
+                  className="whitespace-nowrap transition-transform duration-200 ease-out hover:animate-pop"
+                  size="sm"
+                >
+                  <span className="sm:hidden">Sign up</span>
+                  <span className="hidden sm:inline">Create account</span>
                 </Button>
               </Link>
             </div>
