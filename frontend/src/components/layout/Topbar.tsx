@@ -31,7 +31,7 @@ export function Topbar({ onMenuClick }: { onMenuClick: () => void }) {
           <Button variant="ghost" size="md" className="sm:hidden" onClick={onMenuClick}>
             <Menu className="h-5 w-5" />
           </Button>
-          <div className="text-base font-extrabold italic tracking-[0.18em] sm:text-sm">
+          <div className="text-base font-extrabold italic tracking-[0.18em] sm:text-lg sm:font-black md:text-xl">
             <span className="font-serif">Nexsus</span>
           </div>
         </div>
