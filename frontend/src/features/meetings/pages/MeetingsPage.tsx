@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import {
   Calendar,
   dateFnsLocalizer,
@@ -62,6 +62,10 @@ type CalendarEvent = {
   projectId?: string
 }
 
+function isNonNull<T>(value: T | null | undefined): value is T {
+  return value !== null && value !== undefined
+}
+
 function formatStatus(status: MeetingStatus) {
   if (status === 'pending') return 'Pending'
   if (status === 'accepted') return 'Accepted'
@@ -122,7 +126,7 @@ function CalendarToolbar({ label, onNavigate, onView, view }: ToolbarProps<Calen
         >
           Next
         </Button>
-        <div className="ml-1 text-sm font-semibold tracking-tight">{label}</div>
+        <div className="ml-1 text-base font-semibold tracking-tight sm:text-sm">{label}</div>
       </div>
 
       <div className="flex flex-wrap items-center gap-2">
@@ -164,7 +168,7 @@ function CalendarEventContent({ event }: EventProps<CalendarEvent>) {
     return (
       <div className="flex min-w-0 items-center gap-2">
         <span className="h-2 w-2 shrink-0 rounded-full bg-[rgb(var(--muted))]" />
-        <span className="min-w-0 truncate text-sm font-semibold">{event.title}</span>
+        <span className="min-w-0 truncate text-base font-semibold sm:text-sm">{event.title}</span>
         <span className="shrink-0 rounded border border-[rgb(var(--border))] px-1.5 py-0.5 text-[10px] font-semibold text-[rgb(var(--muted))]">
           Project
         </span>
@@ -182,15 +186,26 @@ function CalendarEventContent({ event }: EventProps<CalendarEvent>) {
   return (
     <div className="flex min-w-0 items-center gap-2">
       <span className={`h-2 w-2 shrink-0 rounded-full ${dotClassName}`} />
-      <span className="min-w-0 truncate text-sm font-semibold">{event.title}</span>
+      <span className="min-w-0 truncate text-base font-semibold sm:text-sm">{event.title}</span>
     </div>
   )
 }
 
 export function MeetingsPage() {
-  const [view, setView] = useState<View>('day')
+  const [view, setView] = useState<View>(() => {
+    if (typeof window === 'undefined') return 'day'
+    return window.matchMedia('(max-width: 640px)').matches ? 'agenda' : 'day'
+  })
   const [date, setDate] = useState<Date>(new Date())
   const [selectedId, setSelectedId] = useState<string | null>(null)
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+    const mq = window.matchMedia('(max-width: 640px)')
+    const onChange = () => setView((v) => (mq.matches && v === 'day' ? 'agenda' : v))
+    mq.addEventListener('change', onChange)
+    return () => mq.removeEventListener('change', onChange)
+  }, [])
 
   const me = useAppSelector(selectCurrentUser)
   const shouldLoadProjects = me?.role === 'entrepreneur' || me?.role === 'admin'
@@ -255,7 +270,7 @@ export function MeetingsPage() {
           location: e.extendedProps.location,
         } satisfies CalendarEvent
       })
-      .filter((e): e is CalendarEvent => Boolean(e))
+      .filter(isNonNull)
 
     const projects = projectsData ?? []
     const projectEvents = projects
@@ -273,7 +288,7 @@ export function MeetingsPage() {
           end,
         } satisfies CalendarEvent
       })
-      .filter((e): e is CalendarEvent => Boolean(e))
+      .filter(isNonNull)
 
     return [...meetingEvents, ...projectEvents]
   }, [eventsData, projectsData])
@@ -352,7 +367,7 @@ export function MeetingsPage() {
       <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
         <div>
           <h2 className="text-3xl font-bold italic tracking-tight">Meetings</h2>
-          <p className="mt-1 text-sm font-medium italic text-[rgb(var(--muted))]">
+          <p className="mt-1 text-base font-medium italic text-[rgb(var(--muted))] sm:text-sm">
             Calendar view of meeting requests and scheduled calls.
           </p>
 
@@ -437,7 +452,7 @@ export function MeetingsPage() {
               </div>
             </div>
 
-            <div className="h-[650px]">
+            <div className="h-[70vh] sm:h-[650px]">
               <Calendar
                 localizer={localizer}
                 events={events}
@@ -447,7 +462,7 @@ export function MeetingsPage() {
                 onView={setView}
                 date={date}
                 onNavigate={setDate}
-                defaultView="day"
+                defaultView={view}
                 onSelectEvent={(e) => setSelectedId(e.id)}
                 popup
                 style={{ height: '100%' }}
@@ -455,6 +470,8 @@ export function MeetingsPage() {
                 eventPropGetter={(event, _start, _end, isSelected) => {
                   if (event.kind === 'project') {
                     return {
+                      className:
+                        'cursor-pointer transition-transform duration-150 ease-out hover:-translate-y-px',
                       style: {
                         border: `1px solid rgb(var(--border))`,
                         backgroundColor: 'rgb(var(--card))',
@@ -484,6 +501,8 @@ export function MeetingsPage() {
                       : 'rgb(var(--card))'
 
                   return {
+                    className:
+                      'cursor-pointer transition-transform duration-150 ease-out hover:-translate-y-px',
                     style: {
                       border: `1px solid ${borderColor}`,
                       backgroundColor,

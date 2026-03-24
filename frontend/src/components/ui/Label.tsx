@@ -6,7 +6,7 @@ export type LabelProps = LabelHTMLAttributes<HTMLLabelElement>
 export function Label({ className, ...props }: LabelProps) {
   return (
     <label
-      className={cn('text-sm font-medium text-[rgb(var(--fg))]', className)}
+      className={cn('text-base font-medium text-[rgb(var(--fg))] sm:text-sm', className)}
       {...props}
     />
   )

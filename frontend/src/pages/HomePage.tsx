@@ -19,14 +19,20 @@ export function HomePage() {
               NEXSUS
             </div>
 
-            <div className="flex items-center gap-2">
-              <Link to="/login">
-                <Button variant="secondary" size="sm">
+            <div className="flex flex-col items-stretch gap-2 sm:flex-row sm:items-center motion-safe:animate-fade-up">
+              <Link className="w-full sm:w-auto" to="/login">
+                <Button
+                  className="w-full transition-transform duration-200 ease-out hover:animate-pop"
+                  variant="secondary"
+                  size="sm"
+                >
                   Login
                 </Button>
               </Link>
-              <Link to="/register">
-                <Button size="sm">Create account</Button>
+              <Link className="w-full sm:w-auto" to="/register">
+                <Button className="w-full transition-transform duration-200 ease-out hover:animate-pop" size="sm">
+                  Create account
+                </Button>
               </Link>
             </div>
           </header>
@@ -42,17 +48,6 @@ export function HomePage() {
                   Nexsus helps founders and investors collaborate with less friction: projects, documents,
                   meetings, and payments in a single, audit-friendly platform.
                 </p>
-
-                <div className="flex flex-wrap justify-center gap-2 pt-1">
-                  <Link to="/register">
-                    <Button size="lg">Create account</Button>
-                  </Link>
-                  <Link to="/login">
-                    <Button size="lg" variant="secondary">
-                      Sign in
-                    </Button>
-                  </Link>
-                </div>
               </div>
             </section>
 

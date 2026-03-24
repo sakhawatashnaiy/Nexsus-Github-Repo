@@ -42,10 +42,12 @@ export function LoginPage() {
   })
 
   return (
-    <Card className="motion-safe:animate-fade-up">
+    <Card className="motion-safe:animate-fade-up transition-transform duration-200 ease-out hover:-translate-y-0.5">
       <CardHeader className="space-y-1">
-        <CardTitle className="text-lg font-bold italic tracking-tight">Sign in</CardTitle>
-        <p className="text-sm font-medium italic text-[rgb(var(--muted))]">
+        <CardTitle className="text-2xl font-extrabold italic tracking-tight sm:text-lg">
+          Sign in
+        </CardTitle>
+        <p className="text-base font-medium italic text-[rgb(var(--muted))] sm:text-sm">
           Use your email and password to access your workspace.
         </p>
       </CardHeader>
@@ -72,7 +74,7 @@ export function LoginPage() {
               {...register('email')}
             />
             {errors.email ? (
-              <div className="text-xs font-semibold italic text-[rgb(var(--danger))]">
+              <div className="text-sm font-semibold italic text-[rgb(var(--danger))] sm:text-xs">
                 {errors.email.message}
               </div>
             ) : null}
@@ -90,7 +92,7 @@ export function LoginPage() {
               {...register('password')}
             />
             {errors.password ? (
-              <div className="text-xs font-semibold italic text-[rgb(var(--danger))]">
+              <div className="text-sm font-semibold italic text-[rgb(var(--danger))] sm:text-xs">
                 {errors.password.message}
               </div>
             ) : null}
@@ -101,9 +103,12 @@ export function LoginPage() {
           </Button>
         </form>
 
-        <div className="text-sm font-medium italic text-[rgb(var(--muted))]">
+        <div className="text-base font-medium italic text-[rgb(var(--muted))] sm:text-sm">
           No account?{' '}
-          <Link className="text-[rgb(var(--fg))] underline underline-offset-4" to="/register">
+          <Link
+            className="text-[rgb(var(--fg))] underline underline-offset-4 transition-transform duration-150 ease-out hover:-translate-y-px hover:animate-pop"
+            to="/register"
+          >
             Create one
           </Link>
         </div>

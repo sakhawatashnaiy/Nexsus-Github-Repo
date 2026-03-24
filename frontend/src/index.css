@@ -93,6 +93,19 @@
 	/* react-big-calendar theme alignment */
 	.rbc-calendar {
 		color: rgb(var(--fg));
+		font-size: 14px;
+	}
+
+	@media (max-width: 640px) {
+		.rbc-calendar {
+			font-size: 15px;
+		}
+		.rbc-time-view {
+			border-radius: 14px;
+		}
+		.rbc-time-header-content {
+			font-weight: 600;
+		}
 	}
 
 	.rbc-month-view,
@@ -102,6 +115,16 @@
 		background: rgb(var(--card));
 		border-radius: 12px;
 		overflow: hidden;
+	}
+
+	.rbc-event,
+	.rbc-background-event {
+		cursor: pointer;
+	}
+
+	.rbc-event:focus-visible {
+		outline: none;
+		box-shadow: 0 0 0 2px rgb(var(--primary) / 0.35);
 	}
 
 	.rbc-header,
@@ -130,6 +153,10 @@
 	.rbc-agenda-time,
 	.rbc-agenda-event {
 		color: rgb(var(--fg));
+	}
+
+	.rbc-agenda-table {
+		background: rgb(var(--card));
 	}
 }
  

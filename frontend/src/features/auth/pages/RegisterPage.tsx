@@ -41,10 +41,12 @@ export function RegisterPage() {
   })
 
   return (
-    <Card className="motion-safe:animate-fade-up">
+    <Card className="motion-safe:animate-fade-up transition-transform duration-200 ease-out hover:-translate-y-0.5">
       <CardHeader className="space-y-1">
-        <CardTitle className="text-lg font-bold italic tracking-tight">Create account</CardTitle>
-        <p className="text-sm font-medium italic text-[rgb(var(--muted))]">
+        <CardTitle className="text-2xl font-extrabold italic tracking-tight sm:text-lg">
+          Create account
+        </CardTitle>
+        <p className="text-base font-medium italic text-[rgb(var(--muted))] sm:text-sm">
           Set up your workspace in minutes.
         </p>
       </CardHeader>
@@ -66,7 +68,7 @@ export function RegisterPage() {
               {...register('name')}
             />
             {errors.name ? (
-              <div className="text-xs font-semibold italic text-[rgb(var(--danger))]">
+              <div className="text-sm font-semibold italic text-[rgb(var(--danger))] sm:text-xs">
                 {errors.name.message}
               </div>
             ) : null}
@@ -84,7 +86,7 @@ export function RegisterPage() {
               {...register('email')}
             />
             {errors.email ? (
-              <div className="text-xs font-semibold italic text-[rgb(var(--danger))]">
+              <div className="text-sm font-semibold italic text-[rgb(var(--danger))] sm:text-xs">
                 {errors.email.message}
               </div>
             ) : null}
@@ -102,7 +104,7 @@ export function RegisterPage() {
               {...register('password')}
             />
             {errors.password ? (
-              <div className="text-xs font-semibold italic text-[rgb(var(--danger))]">
+              <div className="text-sm font-semibold italic text-[rgb(var(--danger))] sm:text-xs">
                 {errors.password.message}
               </div>
             ) : null}
@@ -113,9 +115,12 @@ export function RegisterPage() {
           </Button>
         </form>
 
-        <div className="text-sm font-medium italic text-[rgb(var(--muted))]">
+        <div className="text-base font-medium italic text-[rgb(var(--muted))] sm:text-sm">
           Already have an account?{' '}
-          <Link className="text-[rgb(var(--fg))] underline underline-offset-4" to="/login">
+          <Link
+            className="text-[rgb(var(--fg))] underline underline-offset-4 transition-transform duration-150 ease-out hover:-translate-y-px hover:animate-pop"
+            to="/login"
+          >
             Sign in
           </Link>
         </div>
