@@ -20,6 +20,12 @@ const schema = z.object({
   JWT_ACCESS_EXPIRES_IN: z.string().default('15m'),
   JWT_REFRESH_EXPIRES_IN: z.string().default('30d'),
 
+  // Tune hashing cost for your hardware. Keep >= 10 in production unless you know what you're doing.
+  BCRYPT_SALT_ROUNDS: z.coerce.number().int().min(8).max(14).default(10),
+
+  // Debug: log timing breakdown for /auth/login and /auth/register.
+  LOG_AUTH_TIMINGS: z.coerce.boolean().default(false),
+
   // Comma-separated allowlist. Supports wildcard patterns like "https://*.vercel.app".
   // NOTE: On Render, if you forget to set CORS_ORIGIN, this default keeps typical Vercel deployments working.
   CORS_ORIGIN: z
