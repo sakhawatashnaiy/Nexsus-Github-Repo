@@ -5,6 +5,7 @@
 	--animate-fade-up: fade-up 260ms ease-out both;
 	--animate-pop: pop 170ms ease-out both;
 	--animate-slide-in-left: slide-in-left 220ms ease-out both;
+	--animate-glow: glow 2400ms ease-in-out infinite;
 }
 
 @keyframes fade-in {
@@ -46,6 +47,32 @@
 	to {
 		opacity: 1;
 		transform: translate3d(0, 0, 0);
+	}
+}
+
+@keyframes glow {
+	0%,
+	100% {
+		filter: drop-shadow(0 0 0 rgb(var(--primary) / 0));
+	}
+	50% {
+		filter: drop-shadow(0 0 14px rgb(var(--primary) / 0.28));
+	}
+}
+
+@layer utilities {
+	.text-glow {
+		text-shadow:
+			0 0 18px rgb(var(--primary) / 0.28),
+			0 0 34px rgb(var(--primary) / 0.18);
+	}
+
+	.text-glow-soft {
+		text-shadow: 0 0 16px rgb(var(--primary) / 0.18);
+	}
+
+	.font-display {
+		font-family: ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif;
 	}
 }
 
